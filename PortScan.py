@@ -43,9 +43,9 @@ def main():
     if choice == '0':
         print("Thank you for using PortScan!")
         return 0
-    elif choice == 1:
+    elif choice == '1':
         scan_ports()
-    elif choice == 2:
+    elif choice == '2':
         scan_all_ports()
     else:
         print("Error: Invalid choice!")

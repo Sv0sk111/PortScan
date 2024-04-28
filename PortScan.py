@@ -1,12 +1,13 @@
 import socket
+
 YELLOW = '\033[93m'
 CYAN = '\033[96m\033[40m'
 RESET = '\033[0m'
 
 def scan_ports():
     ip = input("Enter IP address: ")
-    start_port = input("Enter start port: ")
-    end_port = input("Enter end port: ")
+    start_port = int(input("Enter start port: "))  
+    end_port = int(input("Enter end port: "))      
     print(f'Scanning IP {ip} for open ports...')
     for port in range(start_port, end_port + 1):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,10 +16,10 @@ def scan_ports():
         if result == 0:
             print(f"Port {port}: Open")
         else:
-            print("Error: Port wasn't open!")
+            print(f"Port {port}: Closed")
         sock.close()
 
-def scan_all_ports(ip):
+def scan_all_ports():
     ip = input("Enter IP address: ")
     print(f'Scanning IP {ip} for open ports...')
     for port in range(0, 65536): 
@@ -27,6 +28,8 @@ def scan_all_ports(ip):
         result = sock.connect_ex((ip, port))
         if result == 0:
             print(f"Port {port}: Open")
+        else:
+            print(f"Port {port}: Closed")
         sock.close()
 
 def ascii():
@@ -52,4 +55,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
